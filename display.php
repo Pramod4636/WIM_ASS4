@@ -10,6 +10,23 @@
                 table{
                     background-color : white;
                 }
+                .update , .delete 
+                {
+                    background-color : green;
+                    color : white;
+                    border : 0;
+                    outline : none;
+                    border-radius : 5px;
+                    height = 23px;
+                    width = 80px;
+                    font-weight : bold;
+                    cursor : pointer ; 
+                }
+                .delete
+                {
+                    background-color : red;
+                }
+
          
         </style>
     </head>
@@ -42,6 +59,7 @@ if( $total != 0 )
             <th width ="10%">Gender</th>
             <th width ="20%" >Email</th>
             <th width ="10%">Phone</th>
+            <th width ="10%">Caste</th>
             <th width ="24%">Adress</th>
             <th width ="15%">Operations</th>
             </tr>
@@ -57,8 +75,13 @@ if( $total != 0 )
                     <td>".$result['gender']."</td>
                     <td>".$result['email']."</td>
                     <td>".$result['phone']."</td>
+                    <td>".$result['caste']."</td>
                     <td>".$result['address']."</td>
-                    <td><a href= 'update_design.php'>Update</a> </td>
+                    <td><a href= 'update_design.php?id=$result[id]'> <input type='submit' 
+                    value = 'Update' class = 'update' > </a>
+                    <a href= 'delete.php?id=$result[id]'> <input type='submit' 
+                    value = 'Delete' class = 'delete' onclick = 'return checkdelete()'> </a> 
+                    <td>
                   </tr> ";
 
         }
@@ -73,3 +96,9 @@ else
 </table> 
 </center>
 
+<script>
+    function checkdelete()
+    {
+        return confirm('Are you sure your want ot delete this record ');
+    }
+</script>
